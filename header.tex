@@ -1,0 +1,15 @@
+\usepackage{amsthm}
+\usepackage{amsmath}
+\newtheorem{definitionx}{Definition}
+\newenvironment{definition}
+{\pushQED{\qed}\renewcommand{\qedsymbol}{$\smiley{}$}\definitionx}
+{\popQED\enddefinitionx}
+
+\newtheorem{beispielx}{Beispiel}
+\newenvironment{beispiel}
+	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\blacksmiley{}$}\beispielx}
+	{\popQED\endbeispielx}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{wasysym}

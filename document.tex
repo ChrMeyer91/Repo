@@ -1,7 +1,70 @@
-\documentclass{article}
+\documentclass{scrartcl}
+\setlength{\parindent}{0pt}
+\include{header}
  
 \begin{document}
-First document. This is a simple example, with no 
-extra parameters or packages included.
+
+\section{LMSE Zusammenfassung}
+A
+\begin{definition}[Prä-Terme]
+	Sei $V~=~\{v_1, v_2,...\}$ ein unendliches Alphabet. Die Menge $\Lambda^-$ der \emph{Prä-Terme} ist die Menge aller Strings, die durch die folgende Grammatik erzeugt werden können:\\
+	\[\Lambda ^- ::= V \mid (\Lambda ^-~\Lambda ^-) \mid (\lambda V~\Lambda ^-) \]
+\end{definition}
+\begin{beispiel}[Prä-Terme]
+	Folgende Beispiele sind Prä-Terme:
+	\begin{enumerate}
+		\item $((v_0~v_1)~v_2) \in \Lambda^-$
+		\item $(\lambda v_0~(v_0~v_1)) \in \Lambda^-$
+		\item $((\lambda v_0~v_0)~v_1) \in \Lambda^-$
+		\item $((\lambda v_0~(v_0~v_0))~(\lambda v_1~(v_1~v_1))) \in \Lambda^-$		
+	\end{enumerate}
+\end{beispiel}
+Folgende Terminologien werden verwendet:
+
+\begin{enumerate}
+	\item Ein Prä-Term der Form $x$ (ein Element aus $V$) heißt Variable
+	\item Ein Prä-Term der Form $(\lambda x~M)$ heißt Abstraktion (über $x$)
+	\item Ein Prä-Term der Form $(M~N)$ heißt Anwendung (von $M$ auf $N$) 
+\end{enumerate}
+
+Folgende Vereinbarung bezüglich Klammern werden getroffen:
+
+\begin{enumerate}
+	\item $(K~L~M)$ für $((K~L)~M)$
+	\item $(\lambda x~\lambda y~M)$ für $(\lambda x~(\lambda y~M))$
+	\item $(\lambda x~M~N)$ für $(\lambda x~(M~N))$
+	\item $(M~\lambda x~N)$ für $(M~(\lambda x~N))$
+\end{enumerate}
+
+
+\begin{beispiel}[Vereinfachte Prä-Terme]
+	Vereinfachte Prä-Terme aus Beispiel 1:
+	\begin{enumerate}
+		\item $v_0~v_1~v_2$
+		\item $\lambda v_0.v_0~v_1$
+		\item $(\lambda v_0.v_0)~v_1$
+		\item $(\lambda v_0.v_0~v_0)~\lambda v_1.v_1~v_1$
+	\end{enumerate}
+\end{beispiel}
+
+\begin{definition}
+	Für eine Menge $M \in \Lambda^-$ ist die Menge $FV(M)$ $\subseteq V$ der \emph{freien Variablen} von $M$ wie folgt definiert:
+	\begin{align*} 
+		FV(x) &=\{$x$\} \\ 
+		FV(\lambda x.P) &= FV(P)\backslash \{x\} \\
+		FV(P~Q) &= FV(P) \cup FV(Q)
+	\end{align*}
+Ist $FM(M)=\emptyset$, dann heißt $M$ \emph{geschlossen}.
+\end{definition}
+
+\begin{beispiel}[Freie Variablen] Seien $x,y,z$ Variablen, dann gilt:
+	\begin{enumerate}
+		\item $FV(x,y,z)~=~\{x,y,z\}$
+		\item $FV(\lambda x.x~y)~=~\{y\}$
+		\item $FV((\lambda x.x~x)~\lambda y.y~y)~=~\emptyset$
+	\end{enumerate}
+	
+\end{beispiel}
+
 \end{document}
 
